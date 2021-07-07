@@ -7,10 +7,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class HelloWorldSelenium {
 	
 	@Test
-	public void hello() {
+	public void helloTest() {
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 		WebDriver browser = new ChromeDriver();
-		browser.navigate().to("http://localhost:8090/leiloes");		
+		browser.navigate().to("http://localhost:8090/leiloes");	
+		browser.quit();
 	}
 
 }

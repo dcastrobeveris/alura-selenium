@@ -18,7 +18,7 @@ public class LeiloesTest {
 	@BeforeEach
 	public void beforeEach() {
 		LoginPage paginaDeLogin = new LoginPage();
-		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
+		paginaDeLogin.preencherFormularioDeLogin("fulano", "pass");
 		this.paginaDeLeiloes = paginaDeLogin.efetuarLogin();
 		this.paginaDeCadastro = paginaDeLeiloes.carregarFormulario();
 	}
@@ -26,13 +26,13 @@ public class LeiloesTest {
 	@AfterEach
 	public void afterEach() {
 		this.paginaDeLeiloes.fechar();
+		this.paginaDeCadastro.fechar();
 	}
 	
 	@Test
 	public void deveriaCadastrarLeilao() {
-		
 		String hoje = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		String nome = "Leilao do dia " +hoje;
+		String nome = "Leilao do dia " + hoje;
 		String valor = "500.00";
 		
 		this.paginaDeLeiloes = paginaDeCadastro.cadastrarLeilao(nome, valor, hoje);
@@ -46,7 +46,6 @@ public class LeiloesTest {
 		Assert.assertFalse(this.paginaDeCadastro.isPaginaAtual());
 		Assert.assertTrue(this.paginaDeLeiloes.isPaginaAtual());
 		Assert.assertTrue(this.paginaDeCadastro.isMensagensDeValidacaoVisiveis());
-		
 	}
 
 }

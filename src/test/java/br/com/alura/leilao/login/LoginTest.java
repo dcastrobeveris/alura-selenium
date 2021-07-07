@@ -5,7 +5,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 public class LoginTest {
 	
 	private LoginPage paginaDeLogin;
@@ -22,21 +21,23 @@ public class LoginTest {
 	
 	@Test
 	public void deveriaEfetuarLoginComDadosValidos() {
-		paginaDeLogin.preencheFormularioDeLogin("fulano", "pass");
+		paginaDeLogin.preencherFormularioDeLogin("fulano", "pass");
 		paginaDeLogin.efetuarLogin();
 		
-		Assert.assertFalse(paginaDeLogin.isPaginaDeLogin());
+		
 		Assert.assertEquals("fulano", paginaDeLogin.getNomeUsuarioLogado());
+		Assert.assertFalse(paginaDeLogin.isPaginaAtual());
 	}
 	
 	@Test
 	public void naoDeveriaLogarComDadosInvalidos() {
-		paginaDeLogin.preencheFormularioDeLogin("invalido", "123");
+		paginaDeLogin.preencherFormularioDeLogin("invalido", "123");
 		paginaDeLogin.efetuarLogin();
 		
 		Assert.assertTrue(paginaDeLogin.isPaginaDeLoginComDadosInvalidos());
 		Assert.assertNull(paginaDeLogin.getNomeUsuarioLogado());
 		Assert.assertTrue(paginaDeLogin.contemTexto("Usuário e senha inválidos."));
+		
 	}
 	
 	@Test
@@ -45,5 +46,6 @@ public class LoginTest {
 		
 		Assert.assertTrue(paginaDeLogin.isPaginaDeLogin());
 		Assert.assertFalse(paginaDeLogin.contemTexto("Dados do Leilão"));
+		
 	}
 }
