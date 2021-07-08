@@ -24,8 +24,8 @@ public class LoginTest {
 		paginaDeLogin.preencherFormularioDeLogin("fulano", "pass");
 		paginaDeLogin.efetuarLogin();
 		
-		
-		Assert.assertEquals("fulano", paginaDeLogin.getNomeUsuarioLogado());
+		String nomeUsuarioLogado = paginaDeLogin.getNomeUsuarioLogado();
+		Assert.assertEquals("fulano", nomeUsuarioLogado);
 		Assert.assertFalse(paginaDeLogin.isPaginaAtual());
 	}
 	
